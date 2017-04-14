@@ -224,5 +224,5 @@ if __name__ == '__main__':
     app.config['UPLOAD_PROOF'] = "./proof/"
     app.config['UPLOAD_KEY'] = "./public_keys/"
     init_mysql_config()
-    app.run()
+    app.run(host='0.0.0.0', port=80)
 
