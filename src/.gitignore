@@ -1,0 +1,7 @@
+*.key
+*.crt
+*.pem
+*.der
+
+*.pyc
+*.proof
