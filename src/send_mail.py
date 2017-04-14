@@ -7,6 +7,7 @@ from email import encoders
 ADMIN_MAIL = ""
 ADMIN_PASSWORD = ""
 CERTIFICATE_STORE_PATH = "./certificates/"
+ROOT_CERTIFICATE = "root_ca.crt"
 
 
 
@@ -27,6 +28,13 @@ def send_mail_from_admin(file_name, email_addr):
     part.set_payload((attachment).read())
     encoders.encode_base64(part)
     part.add_header('Content-Disposition', "attachment; filename= %s" % file_name)
+    msg.attach(part)
+
+    attachment = open(ROOT_CERTIFICATE, "rb")
+    part  = MIMEBase('application', 'octect-stream')
+    part.set_payload((attachment).read())
+    encoders.encode_base64(part)
+    part.add_header('Content-Disposition', "attachment; filename= %s" % ROOT_CERTIFICATE )
     msg.attach(part)
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
